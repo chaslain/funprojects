@@ -1,0 +1,46 @@
+<!doctype html>
+	<head><title>Calculator</title></head>
+	<body>House Square footage:<input id ="sqft" type="number"><p>What your monthly bill should be: $<span id="bill"></p><button id="button">Calculate</button>
+	<script>
+		function crunch(){
+			var val = sqft.value;
+			if (val < 500)
+			{
+				val *= .12;
+			}
+			else if (val > 499 && val < 1000)
+			{
+				val *= .1;
+			}
+			else if (val > 999 && val < 1500)
+			{
+				val *= .08;
+			}
+			else if (val > 1499 && val < 2000)
+			{
+				val *= .07;
+			}
+			else if (val > 1999 && val < 2500)
+			{
+				val *= .06;
+			}
+			else if (val > 2499 && val < 3000)
+			{
+				val *= .05;
+			}
+			else if (val > 2999 && val < 4000)
+			{
+				val *= .04;
+			}
+			else if (val > 4000)
+			{
+				val *= .035;
+			}
+			document.getElementById('bill').innerHTML = val;
+		}
+		var sqft = document.getElementById('sqft');
+		sqft.addEventListener('change',crunch);
+		document.getElementById('button').addEventListener('click',crunch);
+	</script>
+</body>
+</html>

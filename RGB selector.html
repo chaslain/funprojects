@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<style>
+			.infobar{
+				position:relative;
+				display:block;
+				text-align:center;
+				margin-top:20px;
+			}
+			.innerBar{
+				display:inline;
+			}
+			.bar{
+				margin-left:20px;
+				position:relative;
+				display:inline-block;
+				width:255px;
+				height:5px;
+				background:rgb(192,192,192);
+				cursor:pointer;
+			}
+			.slider{
+				position:absolute;
+				height:20px;
+				width:10px;
+				top:-7px;
+				background:rgb(64,64,64);
+				cursor:pointer;
+				left:0;
+			}
+			#color{
+				display:block;
+				position:relative;
+				margin:20px auto;
+				width:250px;
+				height:250px;
+				background:black;
+			}
+			.num{width:4em;}
+			.Name,.input{
+				display:inline-block;
+			}
+			.Name{width:50px;}
+			.input{width:50px;}
+		</style>
+	</head>
+	<body id="body">
+		<div class="infobar"><div class="innerBar"><div class="Name">Red:</div><div class="input"><input max=255 min=0 class="num" id="r_in" type = "number"/></div><div class="bar" id="red"><div class="slider" id="r"></div></div></div></div>
+		<div class="infobar"><div class="innerBar"><div class="Name">Green:</div><div class="input"><input max=255 min=0 class="num" id="g_in" type = "number"/></div><div class="bar" id="green"><div class="slider" id="g"></div></div></div></div>
+		<div class="infobar"><div class="innerBar"><div class="Name">Blue:</div><div class="input"><input max=255 min=0 class="num" id="b_in" type = "number"/></div><div class="bar" id="blue"><div class="slider" id="b"></div></div></div></div>
+		<div id="color"></div>
+		<script>
+			var red = document.getElementById('r');
+			var green = document.getElementById('g');
+			var blue = document.getElementById('b');
+			var bars = document.getElementsByClassName("bar");
+			var mouseDown = false;
+			var interval;
+			var selected;
+			document.getElementById("r_in").addEventListener("input",inputChange);
+			document.getElementById("g_in").addEventListener("input",inputChange);
+			document.getElementById("b_in").addEventListener("input",inputChange);
+			document.getElementById("body").addEventListener("mouseup",undrag);
+			document.getElementById("body").addEventListener("mousemove",mouseMove);
+			for (var i = 0; i < bars.length; i++)
+			{
+				bars[i].addEventListener("click",click);
+				bars[i].addEventListener("mousedown",drag);
+				
+			}
+			function inputChange(){
+				var value = this.value;
+				if (value < 0)
+					value = 0;
+				if (value > 255)
+					value = 255;
+				getPartner(this).slider.style.left = value + "px";
+				setBoxColor();
+			}
+			function getPartner(element)
+			{
+			var target,slider,input;
+				switch(element.id)
+				{
+					case "r":
+					case "red":
+					case "r_in":
+						target = document.getElementById("red");
+						slider = document.getElementById("r");
+						input = document.getElementById("r_in");
+						break;
+					case "g":
+					case "green":
+					case "g_in":
+						target = document.getElementById("green");
+						slider = document.getElementById("g");
+						input = document.getElementById("g_in");
+						break;
+					case "b":
+					case "blue":
+					case "b_in":
+						target = document.getElementById("blue");
+						slider = document.getElementById("b");
+						input = document.getElementById("b_in");
+						break;		
+				}
+				return {bar:target, slider:slider};
+			}
+			function click(e){
+				var pair = getPartner(e.target);
+				var bar = pair.bar;
+				var slider =  pair.slider;
+				
+
+				var block = bar.getBoundingClientRect();
+				var x = e.pageX - block.left;
+				slider.style.left = x + "px";
+				setBoxColor();
+				
+			}
+			function drag(e){
+				mouseDown = true;
+				selected = getPartner(e.target).slider;
+			}
+			function mouseMove(e){
+				if (mouseDown)
+				{	var slider = getPartner(selected).slider;
+					var x = e.pageX - getPartner(selected).bar.getBoundingClientRect().left;
+					if (x < 0)
+						x = 0;
+					if (x > 255)
+						x = 255;
+					slider.style.left = x + "px";
+					setBoxColor();
+				}
+			}
+			function undrag(){
+				mouseDown = false;
+			}
+			function reset(value){
+					if (value !== parseInt(value))
+						value = 0;
+					return value;
+				}
+			function setBoxColor(){
+				var redVal = parseInt(document.getElementById("r").style.left);
+				var greenVal = parseInt(document.getElementById("g").style.left);
+				var blueVal = parseInt(document.getElementById("b").style.left);
+				
+				redVal = reset(redVal);
+				greenVal = reset(greenVal);
+				blueVal = reset(blueVal);
+				document.getElementById("r_in").value = redVal;
+				document.getElementById("g_in").value = greenVal;
+				document.getElementById("b_in").value = blueVal;
+				console.log("rgb(" + redVal + "," + greenVal + "," + blueVal + ")");
+				document.getElementById("color").style.background = "rgb(" + redVal + "," + greenVal + "," + blueVal + ")";
+			}
+			
+		</script>
+	</body>
+</html>	
+	
