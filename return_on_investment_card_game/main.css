@@ -1,0 +1,262 @@
+.card-info
+{
+	display: inline-block;
+	position: relative;
+	width: 200px;
+	height: 350px;
+	margin: 20px;
+	border: 1px solid black;
+	text-align: center;
+	transition: background 0.8s;
+	user-select: none;
+	cursor:pointer;
+	padding: 20px;
+	border-radius: 5px;
+	background:lightgray;
+}
+
+.card-info-mini
+{
+	width: 100px;
+	height: 175px;
+	padding: 10px;
+}
+
+.btn
+{
+	width: 60px;
+	margin: auto;
+	border: 1px solid black;
+	transition: background 0.8s;
+	text-align: center;
+	padding:10px 0;
+	border-radius:5px;
+	user-select: none;
+	cursor: pointer;
+}
+
+.card-selected>.card-info-rank
+{
+	color: green;
+}
+
+.card-selected
+{
+	animation: dropcard reverse;
+	animation-fill-mode: forwards;
+}
+	
+
+.btn:hover
+{
+	background: gray;
+}
+
+.card-info-parent
+{
+	display: block;
+	position: relative;
+	margin: auto;
+	text-align: center;
+}
+
+.card-info-sold
+{
+	position: absolute;
+	cursor: default;
+	background:lightgray;
+	animation: soldcard 1s linear;
+}
+
+.screen-filter
+{
+	background: black;
+	opacity: 0.333;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.modal-wrapper
+{
+	position: absolute;
+	top: 5vh;
+	height: 80vh;
+	width: 100%;
+}
+
+.end-turn-screen, .trade-screen, .obs-screen, .obs-screen-detail
+{
+	display: block;
+	position: relative;
+	width: 75%;
+	height: 100%;
+	background: lightgray;
+	margin: auto;
+	border: 1px solid black;
+	border-radius: 15px;
+	padding: 10px;
+}
+
+.end-turn-screen-slide-in
+{
+	animation: menu 1s;
+}
+
+.end-turn-screen-slide-out
+{
+	animation: menu 0.4s linear reverse;
+}
+
+.end-turn-asset-list
+{
+	height: 60%;
+	overflow-y: scroll;
+	background: white;
+}
+
+.drop-card
+{
+	animation: dropcard 0.2s;
+}
+
+.card-roi-text
+{
+	font-size: 22px;
+}
+
+.floating-money-wrapper
+{
+	position:absolute;
+}
+
+.floating-money
+{
+	animation: payfloat;
+	position: relative;
+}
+
+.new-card
+{
+	animation: card_slide 0.8s;
+}
+
+.trade-asset-list
+{
+	display: inline-block;
+	border: 1px solid black;
+	width: 45%;
+	height: 400px;
+	background: white;
+	overflow-y: scroll;
+	position: relative;
+}
+
+.player
+{
+	cursor: pointer;
+}
+
+.trade-considering
+{
+	animation: dropcard reverse;
+	animation-fill-mode: forwards;
+	background: white;
+}
+
+.trade-considering:hover
+{
+	background: lightgray;
+}
+
+.asset-list-self
+{
+	border: 1px solid black;
+	background: white;
+	min-height: 700px;
+	overflow: scroll;
+}
+
+.detail-label
+{
+	width: 48%;
+	display: inline-block;
+	position: relative;
+
+}
+
+@keyframes dropcard
+{
+	0%
+	{
+		transform: scale(1.2, 1.2);
+	}
+	
+	100%
+	{
+		transform: scale(1, 1);
+	}
+}
+
+@keyframes card_slide
+{
+	0%{
+		top: -600px;
+	}
+	100%
+	{
+		top: 0px;
+	}
+}
+
+@keyframes menu
+{
+	0%
+	{
+		top: -1000px;
+	}
+	
+	100%
+	{
+		top: 0px;
+	}
+}
+
+@keyframes payfloat
+{
+	0%
+	{
+		opacity:1;
+		top:0;
+	}
+	
+	100%;
+	{
+		opacity:0;
+		top:-80px;
+	}
+}
+
+@keyframes soldcard
+{
+	0%
+	{
+		transform: rotate(0deg);
+	}
+	
+	45%
+	{
+		transform: rotate(-30deg);
+	}
+	
+	
+	
+	100%
+	{
+		top: 1000px;
+		transform: rotate(-10deg);
+	}
+		
+}

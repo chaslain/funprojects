@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="hard_values.js"></script>
+		<script src="complogic.js"></script>
+		<script src="functions.js"></script>
+		<script src="player.js"></script>
+		<script src="assets.js"></script>
+		<script src="main.js"></script>
+		<link rel="stylesheet" href="main.css">
+		<meta charset="utf-8"></meta>
+		<title>ROI</title>
+	</head>
+	<body>
+		<div class="scores">
+			<div class="player" player=0 style="display: inline-block; position: relative; width: 24%;">
+				<div class="name"><input></div>
+				<div>
+					<div class="detail-label">Cash: </div>
+					<div class="cash detail-label"></div>
+				</div>
+				<div>
+					<div class="detail-label">Income: </div>
+					<div class="income detail-label"></div>
+				</div>
+				<div>
+					<div class="detail-label">Net Worth: </div>
+					<div class="net-worth detail-label"></div>
+				</div>
+			</div>
+		</div>
+		<div id="main-scroll" style="height: 80em; overflow-y: scroll;">
+			<div id="scroll-content">
+
+			</div>
+		</div>
+		<div class="screen-filter" style="display: none;"></div>
+		<div class="end-turn-screen-parent modal-wrapper" style="display: none;">
+			<div style="position: relative; width: 100%; height: 100%;">
+				<div class="end-turn-screen">
+					<h3>End of Turn Report</h3>
+					<div class='interest-report'></div>
+					<div>Asset Income: <span class="asset-income"></span></div>
+					<div>Total Income: <span class="total-income"></span></div>
+					<div>End Balance: <span class="balance"></span></div>
+					<div class="end-turn-asset-list"></div>
+					<div style="text-align:center; margin: 10px;">
+						<div class="btn final-end-turn">Done</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-wrapper trade-dialog" style="display: none;">
+			<div style="position: relative; width: 100%;">
+				<div class="trade-screen">
+					<div style="text-align: center;">
+						<div style="display: inline-block; width: 40%; position: relative; margin: auto">
+							<div class="trade-left-player-name"></div>
+						</div>
+						<div style="display: inline-block; width: 40%; position: relative; margin: auto">
+							<div class="trade-right-player-name"></div>
+						</div>
+					</div>
+					<div style="text-align: center;">
+						<div class="trade-asset-list trade-left"></div>
+						<div class="trade-asset-list trade-right"></div>
+					</div>
+					<div style="text-align: center;">
+						<div style="display: inline-block; position: relative; width: 40%;">Cash <input id="left-money-offer"></div>
+						<div style="display: inline-block; position: relative; width: 40%;">Cash <input id="right-money-offer"></div>
+					</div>
+					<div style="text-align: center;">
+						<div class="btn trade-propose">Complete Trade</div>
+						<div class="btn trade-cancel">Cancel</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-wrapper obs-dialog" style="display: none;">
+			<div style="position: relative; width: 100%;">
+				<div class="obs-screen">
+					<div style="text-align: center;">
+						<div class="asset-list-self"></div>
+						<div class="btn check-combo">Form Combo</div>
+						<div class="btn self-observe-exit">Exit</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-wrapper obs-dialog-detail" style="display: none;">
+			<div style="position: relative; width: 100%;">
+				<div class="obs-screen-detail">
+						<table style="text-align: right; margin: auto;">
+							<tr><td style="padding: 5px;">Asset Value</td><td class="asset-val" style="padding: 5px;"></td></tr>
+							<tr><td style="padding: 5px;">Base ROI</td><td class="asset-base-roi" style="padding: 5px;"></td></tr>
+							<tr><td style="padding: 5px;">Projected Asset ROI</td><td class="asset-roi-p" style="padding: 5px;"></td></tr>
+							<tr><td style="padding: 5px;">Projected Asset ROI (cash)</td><td class="asset-roi-c" style="padding: 5px;"></td></tr>
+							<tr><td style="padding: 5px;">Asset Average %</td><td class="asset-average-p" style="padding: 5px;"></td></tr>
+							<tr><td style="padding: 5px;">Asset Average $</td><td class="asset-average-c" style="padding: 5px;"></td></tr>
+							<tr><td style="padding: 5px;">Total Earnings</td><td class="asset-total" style="padding: 5px;"></td></tr>
+						</table>
+						<hr>
+						<div style="height: 45%; overflow-y: scroll;">
+						<table class="asset-history-list" style="width: 75%; background: white; border: 1px solid black; margin-left: auto; margin-right: auto;">
+						</table>
+						</div>
+						<div class="btn self-observe-exit-2" style="margin-top: 10px;">Exit</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
